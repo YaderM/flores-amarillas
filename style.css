@@ -18,10 +18,22 @@ body {
     color: white;
 }
 
+/* Capa para los fuegos artificiales detrás de todo */
+#canvas-fuegos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
 .container {
     width: 100%;
     text-align: center;
     padding: 20px;
+    z-index: 10; /* Por encima de los fuegos */
 }
 
 .hidden { display: none; }
@@ -40,63 +52,57 @@ body {
     transition: transform 0.3s;
 }
 
-#boton-musical:active { transform: scale(0.9); }
-
-/* Texto final */
-.texto-final {
-    font-size: 3rem;
-    color: var(--amarillo);
-    text-shadow: 0 0 20px var(--amarillo-oscuro);
-    margin-bottom: 40px;
-    animation: bounce 2s infinite;
+#boton-musical:hover {
+    transform: scale(1.1);
 }
 
-/* La Flor Gigante */
+/* Texto final con brillo */
+.texto-final {
+    font-size: 3.5rem;
+    color: var(--amarillo);
+    text-shadow: 0 0 20px var(--amarillo-oscuro), 0 0 40px #fff;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+/* Contenedor de la Flor con Imagen */
 .flower {
     position: relative;
-    width: 250px;
-    height: 250px;
+    width: 300px; /* Un poco más grande para impacto */
+    height: 300px;
     margin: 0 auto;
-    animation: aparecer 2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
 
-.mid {
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle, #5d4037, #3e2723);
-    border-radius: 50%;
-    position: absolute;
-    top: 95px;
-    left: 95px;
-    z-index: 10;
+/* La nueva imagen que subiste */
+.img-flor {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 25px rgba(255, 235, 59, 0.8));
+    /* Animación de nacimiento + balanceo infinito */
+    animation: aparecer 2.5s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards, 
+               balanceo-infinito 4s ease-in-out infinite 2.5s;
 }
 
-.Petal1, .Petal2, .Petal3 {
-    position: absolute;
-    width: 60px;
-    height: 110px;
-    background: linear-gradient(to bottom, var(--amarillo), var(--amarillo-oscuro));
-    border-radius: 50% 50% 10% 10%;
-    top: 0;
-    left: 95px;
-    transform-origin: bottom center;
-}
-
-/* Rotaciones */
-.p1 { transform: rotate(0deg); } .p2 { transform: rotate(90deg); }
-.p3 { transform: rotate(180deg); } .p4 { transform: rotate(270deg); }
-.Petal2.p1 { transform: rotate(45deg); } .Petal2.p2 { transform: rotate(135deg); }
-.Petal2.p3 { transform: rotate(225deg); } .Petal2.p4 { transform: rotate(315deg); }
-.Petal3 { height: 90px; top: 20px; filter: brightness(0.8); }
-.Petal3.p1 { transform: rotate(22deg); } .Petal3.p2 { transform: rotate(112deg); }
-.Petal3.p3 { transform: rotate(202deg); } .Petal3.p4 { transform: rotate(292deg); }
-
+/* Animaciones */
 @keyframes aparecer {
     0% { transform: scale(0) rotate(-180deg); opacity: 0; }
-    100% { transform: scale(1) rotate(0); opacity: 1; }
+    100% { transform: scale(1.2) rotate(0); opacity: 1; }
+}
+
+@keyframes balanceo-infinito {
+    0%, 100% { transform: scale(1.2) rotate(-5deg); }
+    50% { transform: scale(1.2) rotate(5deg); }
 }
 
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Estilo para que el mensaje "Tengo un detalle" también se vea bien */
+#mensaje-inicial h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: white;
 }

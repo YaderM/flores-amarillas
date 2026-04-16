@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Flores Amarillas</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,18 +15,17 @@
         
         <div id="contenido-flor" class="hidden">
             <h1 class="texto-final">¡Te Amo!</h1>
+            
             <div class="flower">
-                <div class="mid"></div>
-                <div class="Petal1 p1"></div><div class="Petal1 p2"></div>
-                <div class="Petal1 p3"></div><div class="Petal1 p4"></div>
-                <div class="Petal2 p1"></div><div class="Petal2 p2"></div>
-                <div class="Petal2 p3"></div><div class="Petal2 p4"></div>
-                <div class="Petal3 p1"></div><div class="Petal3 p2"></div>
-                <div class="Petal3 p3"></div><div class="Petal3 p4"></div>
+                <img src="girasol.jpg" alt="Flor" class="img-flor">
             </div>
-            <div class="fuegos"></div>
+
+            <canvas id="canvas-fuegos"></canvas>
         </div>
     </div>
+
+    <audio id="musica" src="musica.mp3"></audio>
+
     <script src="script.js"></script>
 </body>
 </html>
