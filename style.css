@@ -1,0 +1,70 @@
+CSS
+:root {
+    --color-petalo: #ffeb3b;
+    --color-centro: #3e2723;
+}
+
+/* Contenedor de la flor */
+.flower {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    display: none; /* Se mostrará con JS */
+}
+
+/* El centro de la flor */
+.mid {
+    width: 50px;
+    height: 50px;
+    background: var(--color-centro);
+    border-radius: 50%;
+    position: absolute;
+    top: 75px;
+    left: 75px;
+    z-index: 10;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* Estilo base para los pétalos (forma de gota) */
+.Petal1, .Petal2, .Petal3 {
+    position: absolute;
+    width: 50px;
+    height: 80px;
+    background: var(--color-petalo);
+    border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+    top: 20px;
+    left: 75px;
+    transform-origin: bottom center;
+    opacity: 0.9;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Rotaciones para distribuir los pétalos en círculo */
+.p1 { transform: rotate(0deg); }
+.p2 { transform: rotate(90deg); }
+.p3 { transform: rotate(180deg); }
+.p4 { transform: rotate(270deg); }
+
+.Petal2.p1 { transform: rotate(45deg); }
+.Petal2.p2 { transform: rotate(135deg); }
+.Petal2.p3 { transform: rotate(225deg); }
+.Petal2.p4 { transform: rotate(315deg); }
+
+/* Capa extra de pétalos con ligera inclinación */
+.Petal3 { height: 70px; top: 30px; filter: brightness(0.9); }
+.Petal3.p1 { transform: rotate(22deg); }
+.Petal3.p2 { transform: rotate(112deg); }
+.Petal3.p3 { transform: rotate(202deg); }
+.Petal3.p4 { transform: rotate(292deg); }
+
+/* Animación de entrada */
+@keyframes aparecer {
+    0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.animar-flor {
+    display: block !important;
+    animation: aparecer 2s forwards;
+}
