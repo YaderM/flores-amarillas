@@ -1,70 +1,102 @@
-CSS
 :root {
-    --color-petalo: #ffeb3b;
-    --color-centro: #3e2723;
+    --color-fondo: #0a0a0a;
+    --amarillo: #ffeb3b;
+    --amarillo-oscuro: #f9a825;
 }
 
-/* Contenedor de la flor */
+* { box-sizing: border-box; }
+
+body {
+    background-color: var(--color-fondo);
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.hidden { display: none; }
+
+/* Botón llamativo */
+#boton-musical {
+    background: var(--amarillo);
+    color: black;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    border-radius: 50px;
+    font-weight: bold;
+    box-shadow: 0 0 30px var(--amarillo-oscuro);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+#boton-musical:active { transform: scale(0.9); }
+
+/* Texto final */
+.texto-final {
+    font-size: 3rem;
+    color: var(--amarillo);
+    text-shadow: 0 0 20px var(--amarillo-oscuro);
+    margin-bottom: 40px;
+    animation: bounce 2s infinite;
+}
+
+/* La Flor Gigante */
 .flower {
     position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 20px auto;
-    display: none; /* Se mostrará con JS */
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+    animation: aparecer 2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
 
-/* El centro de la flor */
 .mid {
-    width: 50px;
-    height: 50px;
-    background: var(--color-centro);
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #5d4037, #3e2723);
     border-radius: 50%;
     position: absolute;
-    top: 75px;
-    left: 75px;
+    top: 95px;
+    left: 95px;
     z-index: 10;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
-/* Estilo base para los pétalos (forma de gota) */
 .Petal1, .Petal2, .Petal3 {
     position: absolute;
-    width: 50px;
-    height: 80px;
-    background: var(--color-petalo);
-    border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
-    top: 20px;
-    left: 75px;
+    width: 60px;
+    height: 110px;
+    background: linear-gradient(to bottom, var(--amarillo), var(--amarillo-oscuro));
+    border-radius: 50% 50% 10% 10%;
+    top: 0;
+    left: 95px;
     transform-origin: bottom center;
-    opacity: 0.9;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* Rotaciones para distribuir los pétalos en círculo */
-.p1 { transform: rotate(0deg); }
-.p2 { transform: rotate(90deg); }
-.p3 { transform: rotate(180deg); }
-.p4 { transform: rotate(270deg); }
+/* Rotaciones */
+.p1 { transform: rotate(0deg); } .p2 { transform: rotate(90deg); }
+.p3 { transform: rotate(180deg); } .p4 { transform: rotate(270deg); }
+.Petal2.p1 { transform: rotate(45deg); } .Petal2.p2 { transform: rotate(135deg); }
+.Petal2.p3 { transform: rotate(225deg); } .Petal2.p4 { transform: rotate(315deg); }
+.Petal3 { height: 90px; top: 20px; filter: brightness(0.8); }
+.Petal3.p1 { transform: rotate(22deg); } .Petal3.p2 { transform: rotate(112deg); }
+.Petal3.p3 { transform: rotate(202deg); } .Petal3.p4 { transform: rotate(292deg); }
 
-.Petal2.p1 { transform: rotate(45deg); }
-.Petal2.p2 { transform: rotate(135deg); }
-.Petal2.p3 { transform: rotate(225deg); }
-.Petal2.p4 { transform: rotate(315deg); }
-
-/* Capa extra de pétalos con ligera inclinación */
-.Petal3 { height: 70px; top: 30px; filter: brightness(0.9); }
-.Petal3.p1 { transform: rotate(22deg); }
-.Petal3.p2 { transform: rotate(112deg); }
-.Petal3.p3 { transform: rotate(202deg); }
-.Petal3.p4 { transform: rotate(292deg); }
-
-/* Animación de entrada */
 @keyframes aparecer {
-    0% { transform: scale(0) rotate(-45deg); opacity: 0; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0); opacity: 1; }
 }
 
-.animar-flor {
-    display: block !important;
-    animation: aparecer 2s forwards;
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
